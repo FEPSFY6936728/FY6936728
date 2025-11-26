@@ -153,9 +153,13 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 (MarkNtel Advisors 2020 Global Graphene Market Analysis, 2020 (MarkNtel Advisors))
     </pre>
        
-    
-    <!-- WORD COUNT OUTPUT -->
-        <!-- Combined Timestamp + Word Count Script -->
+     <!-- OUTPUTS REQUIRED BY WORKSHEETS -->
+    <p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
+
+    <p><b>Last Modified Time:</b> <span id="lastModified"></span></p>
+    <button onclick="getLastUpdatedTime()" style="margin-top:10px;">Verify Last Modified Time</button>
+
+    <!-- FIXED SCRIPT -->
     <script>
     // Fetch GitHub last updated time
     async function getLastUpdatedTime() {
@@ -165,24 +169,18 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
         document.getElementById("lastModified").innerHTML = lastCommitDate.toLocaleString();
     }
 
-    // Count words inside the <pre> following each heading
+    // Count words inside <pre> following each heading
     function countWordsInPre(headingId) {
-        // This finds:   h3#HeadingID + p pre
         var pre = document.querySelector("#" + headingId + " + p pre");
-
         if (!pre) return 0;
-
         var text = pre.innerText.trim();
         if (text === "") return 0;
-
         return text.split(/\s+/).length;
     }
 
     window.onload = function () {
-        // Timestamp
         getLastUpdatedTime();
 
-        // Word counts
         var introCount = countWordsInPre("Introduction");
         var analysisCount = countWordsInPre("Analysis");
 
@@ -193,10 +191,5 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
     };
     </script>
 
-    </script>
-
 </body>
 </html>
-
-
-
