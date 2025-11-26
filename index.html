@@ -171,20 +171,33 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
         document.getElementById("lastModified").innerHTML = lastCommitDate.toLocaleString();
     }
 
-    // Count words in a section by ID
-    function countWords(sectionId) {
-        var text = document.getElementById(sectionId).innerText;
-        text = text.trim();
+    // Count words in the <pre> directly under a given heading ID
+    function countWordsUnderHeading(headingId) {
+        var heading = document.getElementById(headingId);
+        if (!heading) return 0;
+
+        // Next sibling <p> after the <h3>
+        var paragraph = heading.nextElementSibling;
+        if (!paragraph) return 0;
+
+        // <pre> inside that <p>
+        var pre = paragraph.querySelector("pre");
+        if (!pre) return 0;
+
+        var text = pre.innerText.trim();
         if (text === "") return 0;
+
         return text.split(/\s+/).length;
     }
 
     // Run both timestamp + word count on page load
     window.onload = function () {
+        // Timestamp
         getLastUpdatedTime();
 
-        var introCount = countWords("Introduction");
-        var analysisCount = countWords("Analysis");
+        // Word counts
+        var introCount = countWordsUnderHeading("Introduction");
+        var analysisCount = countWordsUnderHeading("Analysis");
         var total = introCount + analysisCount;
 
         document.getElementById("totalWordCount").innerHTML =
@@ -194,7 +207,6 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 
 </body>
 </html>
-
 
 
 
