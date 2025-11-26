@@ -80,7 +80,7 @@ Graphene, often called a "wonder material", has garnered immense attention due t
     <h3 id="Analysis">Analysis & Discussion</h3>
     <p class="ex1">
     <pre>
-Electronics and Semiconductors:
+<b><u>Electronics and Semiconductors</u></b>
 Graphene’s potential in electronics comes from its high carrier mobility, which allows electrons to move quickly through the material, enabling 
         faster devices (Geim and Novoselov, 2007). Its ambipolar electric field effect improves flexibility in circuits, and ballistic transport 
         at room temperature makes graphene suitable for high-speed electronics (Schwierz, 2010). The Chiral Quantum Hall Effect (CQHE) in graphene 
@@ -88,14 +88,14 @@ Graphene’s potential in electronics comes from its high carrier mobility, whic
         This quantum behaviour provides precise control of electronic properties, crucial for quantum computing. Furthermore, graphene’s minimum quantum 
         conductivity near the neutrality point allows it to remain conductive even when charge carriers are sparse, unlike conventional semiconductors.
 
-Energy Storage Applications:
+<b><u>Energy Storage Applications</u></b>
 Graphene’s high surface area and excellent conductivity make it perfect for enhancing energy storage technologies such as lithium-ion batteries 
         and supercapacitors (Bonaccorso et al, 2015). In batteries, graphene improves charge capacity by allowing more efficient ion interaction, 
         leading to faster charging, more storage, and longer-lasting performance without degradation. In supercapacitors, the ability to handle rapid charge 
         and discharge cycles is vital for high-power applications, such as electric vehicles (Bonaccorso et al, 2015). Additionally, graphene’s flexibility and 
         strength could lead to lighter, more durable energy storage devices, enhancing the performance of portable electronics and renewable energy systems.
 
-Biomedical Applications:
+<b><u>Biomedical Applications</u></b>
 Graphene’s biocompatibility opens the door to various medical applications (Geim and Novoselov, 2007). Its ability to penetrate cells 
         efficiently makes it ideal for targeted drug delivery, where drugs can be attached to graphene nanoparticles and delivered precisely 
         to diseased cells, minimising side effects (oncology treatments). Graphene-based biosensors are highly sensitive, allowing for real-time 
@@ -106,7 +106,7 @@ Graphene’s biocompatibility opens the door to various medical applications (Ge
 
 
 
-Scalability Issues:
+<b><u>Scalability Issues</u></b>
 Scalability remains one of the most significant barriers to the widespread adoption of graphene. Producing large quantities of high-quality graphene that retain the material's 
         exceptional properties is complex and costly. Initially, graphene was isolated using mechanical exfoliation, a process that, while effective for research purpose, is not 
         scalable due to its labor-intensive nature and low yield. Chemical Vapor Deposition (CVD) has emerged as a promising technique for producing large-area graphene. 
@@ -120,7 +120,8 @@ Scalability remains one of the most significant barriers to the widespread adopt
         the silicon to sublimate and leaving behind a graphene layer on the carbon surface. This technique produces high-quality graphene with excellent electronic 
         properties but is limited by the cost and availability of SiC wafers and the difficulty in achieving large-area coverage (Yu et al, 2011).
 
-Cost of Production:
+        
+<b><u>Cost of Production</u></b>
 The cost of producing graphene, especially high-quality graphene, remains a significant barrier to its widespread adoption. Methods that produce the highest quality graphene, such 
         as CVD and epitaxial growth on SiC, require expensive equipment and precise control over growth conditions, driving up costs. For instance, CVD requires metal substrates like 
         copper, which must be carefully prepared and subsequently removed, adding to the overall expense. Liquid-phase exfoliation, while less costly and more scalable, often 
@@ -151,6 +152,54 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 (Yu et al, 2011)
 (MarkNtel Advisors 2020 Global Graphene Market Analysis, 2020 (MarkNtel Advisors))
     </pre>
+     <!-- WORD COUNT OUTPUT -->
+    <p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
 
+    <!-- Last Modified Time Display -->
+    <p><b>Last Modified Time:</b> <span id="lastModified"></span></p>
+    <button onclick="getLastUpdatedTime()" style="margin-top:10px;">Verify Last Modified Time</button>
+
+    <!-- Timestamp Script -->
+    <script>
+    async function getLastUpdatedTime() {
+        const response = await fetch("https://api.github.com/repos/YOUR_USERNAME/YOUR_REPOSITORY/commits");
+        const data = await response.json();
+
+        const lastCommitDate = new Date(data[0].commit.author.date);
+
+        document.getElementById("lastModified").innerHTML =
+            lastCommitDate.toLocaleString();
+    }
+
+    window.onload = getLastUpdatedTime;
+    </script>
+
+</body>
+</html>
+
+    <!-- Word Count Script -->
+    <script>
+    function countWords(sectionId) {
+        var text = document.getElementById(sectionId).innerText;
+        text = text.trim();
+        if (text === "") return 0;
+        return text.split(/\s+/).length;
+    }
+
+    window.onload = function () {
+        var introCount = countWords("Introduction");
+        var analysisCount = countWords("Analysis");
+        var total = introCount + analysisCount;
+
+        document.getElementById("totalWordCount").innerHTML =
+            "Total word count (Introduction + Analysis & Discussion): " + total;
+    };
+    </script>
+
+</body>
+</html>
+
+
+    
 </body>
 </html>
