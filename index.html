@@ -155,13 +155,7 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
        
     
     <!-- WORD COUNT OUTPUT -->
-    <p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
-
-    <!-- Last Modified Time Display -->
-    <p><b>Last Modified Time:</b> <span id="lastModified"></span></p>
-    <button onclick="getLastUpdatedTime()" style="margin-top:10px;">Verify Last Modified Time</button>
-
-    <!-- Combined Timestamp + Word Count Script -->
+        <!-- Combined Timestamp + Word Count Script -->
     <script>
     // Fetch GitHub last updated time
     async function getLastUpdatedTime() {
@@ -171,17 +165,11 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
         document.getElementById("lastModified").innerHTML = lastCommitDate.toLocaleString();
     }
 
-    // Count words in the <pre> directly under a given heading ID
-    function countWordsUnderHeading(headingId) {
-        var heading = document.getElementById(headingId);
-        if (!heading) return 0;
+    // Count words inside the <pre> following each heading
+    function countWordsInPre(headingId) {
+        // This finds:   h3#HeadingID + p pre
+        var pre = document.querySelector("#" + headingId + " + p pre");
 
-        // Next sibling <p> after the <h3>
-        var paragraph = heading.nextElementSibling;
-        if (!paragraph) return 0;
-
-        // <pre> inside that <p>
-        var pre = paragraph.querySelector("pre");
         if (!pre) return 0;
 
         var text = pre.innerText.trim();
@@ -190,19 +178,21 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
         return text.split(/\s+/).length;
     }
 
-    // Run both timestamp + word count on page load
     window.onload = function () {
         // Timestamp
         getLastUpdatedTime();
 
         // Word counts
-        var introCount = countWordsUnderHeading("Introduction");
-        var analysisCount = countWordsUnderHeading("Analysis");
+        var introCount = countWordsInPre("Introduction");
+        var analysisCount = countWordsInPre("Analysis");
+
         var total = introCount + analysisCount;
 
         document.getElementById("totalWordCount").innerHTML =
             "Total word count (Introduction + Analysis & Discussion): " + total;
     };
+    </script>
+
     </script>
 
 </body>
