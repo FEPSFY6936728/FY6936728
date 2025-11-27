@@ -207,41 +207,18 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 <p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
 
 <script>
-function countWordsUnderHeading(headingId) {
+    function countWordsUnderHeading(sectionId) {
+        const text = document.getElementById(sectionId).textContent;
+        const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+        return words.length;
+    )
+    function displayTotalWordCount() (
+        const introCount = displayTotalWordCount("IntroductionText");
+        const analysisCount = displayTotalWordCount("AnalysisText");
+        const totalCount = introCount + analysisCount;
+        document.getElementById("totalWordCount").innerText = 'Total word count: ${totalCount}';
 
-    // Find the heading
-    let heading = document.getElementById(headingId);
-    if (!heading) return 0;
-
-    // Move to the next REAL element (skip whitespace)
-    let next = heading.nextSibling;
-    while (next && next.nodeType !== 1) {
-        next = next.nextSibling;
-    }
-
-    // Now next should be the <p> tag
-    if (!next) return 0;
-
-    // Find the <pre> inside that <p>
-    let pre = next.querySelector("pre");
-    if (!pre) return 0;
-
-    // Get the text and count words
-    let text = pre.innerText.trim();
-    if (!text) return 0;
-
-    return text.split(/\s+/).length;
-}
-
-function displayTotalWordCount() {
-    let intro = countWordsUnderHeading("Introduction");
-    let analysis = countWordsUnderHeading("Analysis");
-
-    let total = intro + analysis;
-
-    document.getElementById("totalWordCount").innerText =
-        "Total word count: " + total;
-}
+    )
 </script>
 
 
