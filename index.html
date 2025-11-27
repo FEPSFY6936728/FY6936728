@@ -204,6 +204,7 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
     }
 </script>
 
+<p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
 
 <script>
 function countWordsUnderHeading(headingId) {
@@ -214,14 +215,14 @@ function countWordsUnderHeading(headingId) {
 
     // Move to the next REAL element (skip whitespace)
     let next = heading.nextSibling;
-    while (next && next.nodeType !== 1) {  
+    while (next && next.nodeType !== 1) {
         next = next.nextSibling;
     }
 
     // Now next should be the <p> tag
     if (!next) return 0;
 
-    // Find the <pre> inside the <p>
+    // Find the <pre> inside that <p>
     let pre = next.querySelector("pre");
     if (!pre) return 0;
 
@@ -241,13 +242,8 @@ function displayTotalWordCount() {
     document.getElementById("totalWordCount").innerText =
         "Total word count: " + total;
 }
-
-// Combine with timestamp
-window.onload = function () {
-    getLastUpdatedTime();
-    displayTotalWordCount();
-};
 </script>
+
 
     
 </body>
