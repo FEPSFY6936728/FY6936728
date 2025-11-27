@@ -205,38 +205,48 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 </script>
 
 
-<!-- WORD COUNT OUTPUT -->
-<p id="totalWordCount"></p>
-<hr>
-
 <script>
-    // Count words inside <pre> following a heading ID
-    function countWordsInPre(headingId) {
-        // Find: h3#ID + p pre
-        const pre = document.querySelector("#" + headingId + " + p pre");
-        if (!pre) return 0;
+function countWordsUnderHeading(headingId) {
 
-        const text = pre.innerText.trim();
-        if (text === "") return 0;
+    // Find the heading
+    let heading = document.getElementById(headingId);
+    if (!heading) return 0;
 
-        return text.split(/\s+/).length;
+    // Move to the next REAL element (skip whitespace)
+    let next = heading.nextSibling;
+    while (next && next.nodeType !== 1) {  
+        next = next.nextSibling;
     }
 
-    function displayTotalWordCount() {
-        const introCount = countWordsInPre("Introduction");
-        const analysisCount = countWordsInPre("Analysis");
+    // Now next should be the <p> tag
+    if (!next) return 0;
 
-        const total = introCount + analysisCount;
+    // Find the <pre> inside the <p>
+    let pre = next.querySelector("pre");
+    if (!pre) return 0;
 
-        document.getElementById("totalWordCount").innerText =
-            `Total word count: ${total}`;
-    }
+    // Get the text and count words
+    let text = pre.innerText.trim();
+    if (!text) return 0;
 
-    // Combined onload (this was your biggest problem)
-    window.onload = function () {
-        getLastUpdatedTime();      // timestamp
-        displayTotalWordCount();   // word count
-    };
+    return text.split(/\s+/).length;
+}
+
+function displayTotalWordCount() {
+    let intro = countWordsUnderHeading("Introduction");
+    let analysis = countWordsUnderHeading("Analysis");
+
+    let total = intro + analysis;
+
+    document.getElementById("totalWordCount").innerText =
+        "Total word count: " + total;
+}
+
+// Combine with timestamp
+window.onload = function () {
+    getLastUpdatedTime();
+    displayTotalWordCount();
+};
 </script>
 
     
