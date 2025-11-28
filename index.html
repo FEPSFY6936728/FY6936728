@@ -232,14 +232,16 @@ function countWordsInElement(elementId) {
 }
 
 function displayTotalWordCount() {
-    const introCount   = countWordsInElement("IntroductionText");
-    const analysisCount = countWordsInElement("AnalysisText");
+    const introCount      = countWordsInElement("IntroductionText");
+    const analysisCount   = countWordsInElement("AnalysisText");
+    const figure17Count   = countWordsInElement("FigureAnalysisText"); 
 
-    const total = introCount + analysisCount;
+    const total = introCount + analysisCount + figure17Count;
 
     document.getElementById("totalWordCount").innerText =
         "Total word count: " + total;
 }
+
 
 /* ------------------ COMBINED THE ONLOAD ------------------ */
 window.onload = function () {
