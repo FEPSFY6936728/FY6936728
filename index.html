@@ -69,7 +69,8 @@ still need to write
     <!-- INTRODUCTION -->
     <h3 id="Introduction">Introduction</h3>
     <p class="ex1">
-    <pre>
+    <pre id="IntroductionText">
+
 Graphene, often called a "wonder material", has garnered immense attention due to its extraordinary properties and potential 
         applicatios across fields such as sensors, neural electrodes, energy storage devices, and nanocomposites (Singh et al, 2011). 
         But what exactly is graphene, and why has it sparked such excitement?
@@ -80,7 +81,9 @@ Graphene, often called a "wonder material", has garnered immense attention due t
     <h3 id="Analysis">Analysis & Discussion</h3>
     <p class="ex1">
     <pre>
-<pre>
+<pre id="AnalysisText">
+
+
 <b><u>Electronics and Semiconductors</u></b>
 Graphene’s potential in electronics comes from its high carrier mobility, which allows electrons to move quickly through the material, enabling 
         faster devices (Geim and Novoselov, 2007). Its ambipolar electric field effect improves flexibility in circuits, and ballistic transport 
@@ -153,7 +156,6 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 (Yu et al, 2011)
 (MarkNtel Advisors 2020 Global Graphene Market Analysis, 2020 (MarkNtel Advisors))
     </pre>
-       
 <!-- Last commit time display -->
 <div id="last-updated">Loading last update time...</div>
 
@@ -163,81 +165,72 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
 </button>
 
 <script>
-    async function getLastUpdatedTime() {
-        const username = 'FEPSFY6936728';   // FIXED USERNAME
-        const repo = 'FY6936728';
+/* ------------------ TIMESTAMP FUNCTION ------------------ */
+async function getLastUpdatedTime() {
+    const username = 'FEPSFY6936728';   // your GitHub username
+    const repo = 'FY6936728';           // your GitHub repo
 
-        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+    const url = `https://api.github.com/repos/${username}/${repo}/commits`;
 
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: { 'Accept': 'application/vnd.github.v3+json' }
-            });
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: { 'Accept': 'application/vnd.github.v3+json' }
+        });
 
-            if (!response.ok) {
-                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
-            }
-
-            const commits = await response.json();
-
-            if (commits && commits.length > 0) {
-                const lastCommitDate = new Date(commits[0].commit.committer.date);
-
-                document.getElementById('last-updated').innerText =
-                    `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
-            } else {
-                document.getElementById('last-updated').innerText =
-                    'No commits found in the repository.';
-            }
-
-        } catch (error) {
-            console.error('Error fetching the last updated time:', error);
-            document.getElementById('last-updated').innerText =
-                'Error fetching update time. Please check the repository details.';
+        if (!response.ok) {
+            throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
         }
-    }
 
-    async function verifyLastUpdatedTime() {
-        document.getElementById('last-updated').innerText = 'Verifying...';
-        await getLastUpdatedTime();
-        alert("Last modified time has been successfully verified from GitHub API.");
+        const commits = await response.json();
+
+        if (commits && commits.length > 0) {
+            const lastCommitDate = new Date(commits[0].commit.committer.date);
+
+            document.getElementById('last-updated').innerText =
+                "Last Modified Time: " + lastCommitDate.toLocaleString();
+        } else {
+            document.getElementById('last-updated').innerText =
+                "No commits found in the repository.";
+        }
+
+    } catch (error) {
+        console.error('Error fetching the last updated time:', error);
+        document.getElementById('last-updated').innerText =
+            "Error fetching update time. Please check the repository details.";
     }
+}
+
+async function verifyLastUpdatedTime() {
+    document.getElementById('last-updated').innerText = "Verifying...";
+    await getLastUpdatedTime();
+    alert("Last modified time has been successfully verified from GitHub.");
+}
 </script>
 
+<!-- WORD COUNT OUTPUT -->
 <p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
 
 <script>
-// Count words inside the <pre> following a heading
-function countWordsUnderHeading(headingId) {
+/* ------------------ WORD COUNT FUNCTION ------------------ */
+/* Requires:
+   <pre id="IntroductionText">...</pre>
+   <pre id="AnalysisText">...</pre>
+*/
 
-    // Find the heading
-    let heading = document.getElementById(headingId);
-    if (!heading) return 0;
+function countWordsInElement(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return 0;
 
-    // Move to next REAL element (skip whitespace)
-    let next = heading.nextSibling;
-    while (next && next.nodeType !== 1) {
-        next = next.nextSibling;
-    }
-
-    // Should now be the <p> tag
-    if (!next) return 0;
-
-    // Find <pre> inside <p>
-    let pre = next.querySelector("pre");
-    if (!pre) return 0;
-
-    // Get text & count words
-    let text = pre.innerText.trim();
+    const text = el.innerText.trim();
     if (!text) return 0;
 
     return text.split(/\s+/).length;
 }
 
 function displayTotalWordCount() {
-    const introCount = countWordsUnderHeading("Introduction");
-    const analysisCount = countWordsUnderHeading("Analysis");
+    const introCount   = countWordsInElement("IntroductionText");
+    const analysisCount = countWordsInElement("AnalysisText");
 
     const total = introCount + analysisCount;
 
@@ -245,9 +238,9 @@ function displayTotalWordCount() {
         "Total word count: " + total;
 }
 
-// COMBINE BOTH ONLOAD FUNCTIONS (timestamp + word count)
+/* ------------------ COMBINED ONLOAD ------------------ */
 window.onload = function () {
-    getLastUpdatedTime();   // your timestamp function (already defined above)
+    getLastUpdatedTime();
     displayTotalWordCount();
 };
 </script>
