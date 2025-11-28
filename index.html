@@ -61,7 +61,7 @@
     <!-- ABSTRACT -->
     <h3 id="Abstract">Abstract</h3>
     <p class="ex1">
-    <pre>
+    <pre id="AbstractText">
 Graphene has emerged as one of the most promising advanced materials due to its exceptional electrical, 
         mechanical, and chemical properties. This article explores its potential applications in electronics, 
         energy storage, and biomedical engineering, while also addressing key limitations such as scalability 
@@ -237,11 +237,13 @@ function countWordsInElement(elementId) {
 }
 
 function displayTotalWordCount() {
-    const introCount      = countWordsInElement("IntroductionText");
-    const analysisCount   = countWordsInElement("AnalysisText");
-    const figure17Count   = countWordsInElement("FigureAnalysisText"); 
+    const abstractCount    = countWordsInElement("AbstractText");
+    const introCount       = countWordsInElement("IntroductionText");
+    const analysisCount    = countWordsInElement("AnalysisText");
+    const figure17Count    = countWordsInElement("FigureAnalysisText");
 
-    const total = introCount + analysisCount + figure17Count;
+    const total = abstractCount + introCount + analysisCount + figure17Count;
+
 
     document.getElementById("totalWordCount").innerText =
         "Total word count: " + total;
