@@ -58,7 +58,7 @@
 
     <hr>
 
-    <!-- ABSTRACT -->
+    
     <h3 id="Abstract">Abstract</h3>
     <p class="ex1">
     <pre id="AbstractText">
@@ -71,7 +71,7 @@ Graphene has emerged as one of the most promising advanced materials due to its 
     </pre>
     </p>
 
-    <!-- INTRODUCTION -->
+   
     <h3 id="Introduction">Introduction</h3>
     <p class="ex1">
     <pre id="IntroductionText">
@@ -82,7 +82,7 @@ Graphene, often called a "wonder material", has garnered immense attention due t
     </pre>
     </p>
 
-    <!-- ANALYSIS -->
+  
     <h3 id="Analysis">Analysis & Discussion</h3>
     <p class="ex1">
     <pre>
@@ -136,7 +136,7 @@ The cost of producing graphene, especially high-quality graphene, remains a sign
     challenge for the commercialization of graphene, as industries require both high-quality and cost-effective materials (Paton et al, 2014).
 </pre>
 
-<!-- Graph -->
+
 <div style="margin-left:250px; margin-top:10px;">
     <img src="tdmad1e78f17_hr.jpg" alt="Graphene Patent Graph"
          style="width:450px; border:1px solid #ccc; border-radius:5px;">
@@ -156,7 +156,7 @@ Europe is almost tied with the US, reinforcing why graphene is a revolutionary m
 
     </p>
 
-    <!-- REFERENCES -->
+    
     <h3 id="References">References</h3>
     <p class="ex1">
     <pre>
@@ -169,19 +169,19 @@ Europe is almost tied with the US, reinforcing why graphene is a revolutionary m
 (Yu et al, 2011)
 (MarkNtel Advisors 2020 Global Graphene Market Analysis, 2020 (MarkNtel Advisors))
     </pre>
-<!-- Last commit time display -->
+
 <div id="last-updated">Loading last update time...</div>
 
-<!-- Verify Button -->
+
 <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
     Verify Last Modified Time
 </button>
 
 <script>
-/* ------------------ TIMESTAMP FUNCTION ------------------ */
+
 async function getLastUpdatedTime() {
-    const username = 'FEPSFY6936728';   // your GitHub username
-    const repo = 'FY6936728';           // your GitHub repo
+    const username = 'FEPSFY6936728';  
+    const repo = 'FY6936728';         
 
     const url = `https://api.github.com/repos/${username}/${repo}/commits`;
 
@@ -221,11 +221,11 @@ async function verifyLastUpdatedTime() {
 }
 </script>
 
-<!-- WORD COUNT OUTPUT -->
+
 <p id="totalWordCount" style="font-weight:bold; margin-top:30px;"></p>
 
 <script>
-/* ------------------ WORD COUNT FUNCTION ------------------ */
+
 function countWordsInElement(elementId) {
     const el = document.getElementById(elementId);
     if (!el) return 0;
@@ -250,7 +250,7 @@ function displayTotalWordCount() {
 }
 
 
-/* ------------------ COMBINED THE ONLOAD ------------------ */
+
 window.onload = function () {
     getLastUpdatedTime();
     displayTotalWordCount();
